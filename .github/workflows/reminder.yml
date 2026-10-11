@@ -1,6 +1,6 @@
 name: Class Reminder
 
-"on":
+on:
   schedule:
     - cron: '0 13 * * *'
   workflow_dispatch:
