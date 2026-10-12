@@ -75,9 +75,7 @@ def send_both_messages(message):
 def check_and_send_reminders():
     """ 检查明天课程并发送提醒 """
     now = datetime.now()
-    if now.hour !=21:
-        print(f"当前时间{now. strftime('%H:%M')},不是推送时间（21:00）")
-        return
+    
     from dotenv import load_dotenv
 load_dotenv()
 
