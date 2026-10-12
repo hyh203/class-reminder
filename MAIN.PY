@@ -152,10 +152,7 @@ def check_and_remind():
     """检查明天的课程并提醒"""
     now = datetime.now()
     
-    # 只在晚上 21:00-21:59 运行
-    if now.hour != 21:
-        print(f"当前时间 {now.strftime('%H:%M')}，不是推送时间（21:00）")
-        return
+    
     
     print("正在获取明天日历...")
     service = get_calendar_service()
