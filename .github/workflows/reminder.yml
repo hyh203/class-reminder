@@ -15,6 +15,15 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Check secrets
+        run: |
+          if [ -z "$WECOM_WEBHOOK_URL" ]; then echo "WECOM is EMPTY"; else echo "WECOM is SET"; fi
+          if [ -z "$FEISHU_WEBHOOK_URL" ]; then echo "FEISHU is EMPTY"; else echo "FEISHU is SET"; fi
+        env:
+          WECOM_WEBHOOK_URL: ${{ secrets.WECOM_WEBHOOK_URL }}
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+
       - name: Run reminder
         env:
           WECOM_WEBHOOK_URL: ${{ secrets.WECOM_WEBHOOK_URL }}
