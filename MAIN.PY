@@ -103,7 +103,13 @@ def check_and_remind():
     print("正在获取明天日历...")
     service = get_calendar_service()
     events = get_tomorrow_events(service)
-
+    for event in events:
+        summary = event['summary']
+        
+                # 只推送 PPG 开头的课程，跳过个人事务
+        if not summary.startswith('PPG'):
+            print(f"跳过非课程事件: {summary}")
+            continue  # 这行要和 print 对齐，都在 if 里面
     if not events:
         print("明天没有课")
         return
@@ -141,7 +147,7 @@ def check_and_remind():
             msg += f"   时间：{course['time']}\n"
             msg += f"   地点：{course['location']}\n\n"
 
-        msg += "请提前做好准备！"
+       
 
         print("\n发送汇总提醒...")
         send_both_messages(msg)
